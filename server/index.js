@@ -1,3 +1,4 @@
+const util = require('util')
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
@@ -31,8 +32,16 @@ app.post('/api/v1/favorites/:artist/:title/:rating', (req, res) => {
     .then(() => res.status(200).json({success: 'favorite added!'}))
 });
 
+app.put('/api/v1/favorites/:fav_id/', (req, res) => {
+  const song = database('favorites').where(database.raw("favorites.fav_id = ?", [req.params.fav_id]))
+  song.update(req.query)
+    .then(stuff => {res.status(200).json({success: 'song successfully updated'})})
+    .catch(() => { res.status(400).json({ 'error':'ya done messed up'})})
+});
+
 app.listen(app.get('port'), () => {
   console.log(`${app.locals.title} is running on ${app.get('port')}.`)
 });
 
-module.exports = app;
+
+module.exports = app, environment, configuration, database;
