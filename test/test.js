@@ -1,8 +1,6 @@
 var app = require('../server')
 const test = require('supertest')
 const chai = require('chai');
-const knexCleaner = require('knex-cleaner')
-
 const environment = "development";
 const configuration = require('../knexfile')[environment];
 const database = require('knex')(configuration)
@@ -27,7 +25,7 @@ describe('favorites', () => {
   });
   it('can find one favorited song by id', function() {
     return test(app)
-      .get('/api/v1/favorites/1')
+      .get('/api/v1/favorites/2')
       .expect('Content-Type', /json/)
       .expect(200)
       .then(res => {
@@ -47,9 +45,14 @@ describe('favorites', () => {
       .expect(200)
       .expect('{"success":"favorite added!"}')
       .then(() => {
-        knexCleaner.clean(database).then(() => {})
-        database.seed.run()
+        database.seed.run();
       }
   )
+  });
+  it('can delete a favorite', () => {
+    return test(app)
+      .delete('/api/v1/favorites/1/')
+      .expect(200)
+      .expect('{"success":"song successfully deleted"}')
   });
 });
