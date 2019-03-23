@@ -26,9 +26,10 @@ app.get("/api/v1/favorites/:id", (req, res) => {
     .then(song => res.status(200).json(song) )
 });
 
-app.post('/api/v1/favorites'), (req, res) => {
-  console.log(req.params)
-}
+app.post('/api/v1/favorites/:artist/:title/:rating', (req, res) => {
+  database('favorites').insert(req.params)
+    .then(() => res.status(200).json({success: 'favorite added!'}))
+});
 
 app.listen(app.get('port'), () => {
   console.log(`${app.locals.title} is running on ${app.get('port')}.`)

@@ -1,5 +1,5 @@
 var app = require('../server')
-  request = require('supertest')
+const test = require('supertest')
 const chai = require('chai');
 // const should = chai.should();
 // const chaiHttp = require('chai-http');
@@ -9,7 +9,7 @@ const chai = require('chai');
 
 describe('favorites', () => {
   it('can find all favorited songs', function() {
-    return request(app)
+    return test(app)
       .get('/api/v1/favorites')
       .expect('Content-Type', /json/)
       .expect(200)
@@ -18,7 +18,7 @@ describe('favorites', () => {
       })
   });
   it('can find one favorited song by id', function() {
-    return request(app)
+    return test(app)
       .get('/api/v1/favorites/1')
       .expect('Content-Type', /json/)
       .expect(200)
@@ -27,4 +27,10 @@ describe('favorites', () => {
         chai.assert(res.body.length, 1)
       })
   });
+  it('can post to add a favorite', () => {
+    return test(app)
+      .post('/api/v1/favorites/queen/rock/90')
+      .expect(200)
+      .expect('{"success":"favorite added!"}')
+  })
 });
