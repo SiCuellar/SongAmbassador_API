@@ -52,4 +52,15 @@ describe('favorites', () => {
       }
   )
   });
+  it('can delete a favorite', () => {
+    return test(app)
+      .delete('/api/v1/favorites/1/')
+      .expect(200)
+      .expect('{"success":"song successfully deleted"}')
+      .then(() => {
+        knexCleaner.clean(database).then(() => {})
+        database.seed.run()
+      }
+  )
+  });
 });

@@ -33,10 +33,15 @@ app.post('/api/v1/favorites/:artist/:title/:rating', (req, res) => {
 });
 
 app.put('/api/v1/favorites/:fav_id/', (req, res) => {
-  const song = database('favorites').where(database.raw("favorites.fav_id = ?", [req.params.fav_id]))
-  song.update(req.query)
+  database('favorites').where(database.raw("favorites.fav_id = ?", [req.params.fav_id])).update(req.query)
     .then(stuff => {res.status(200).json({success: 'song successfully updated'})})
     .catch(() => { res.status(400).json({ 'error':'ya done messed up'})})
+});
+
+app.delete('/api/v1/favorites/:fav_id', (req, res) => {
+  database('favorites').where(req.params).del()
+    .then(stuff => { res.status(200).json({ success: 'song successfully deleted' }) })
+    .catch(() => { res.status(400).json({ error: 'song still exists' }) })
 });
 
 app.listen(app.get('port'), () => {
@@ -45,3 +50,4 @@ app.listen(app.get('port'), () => {
 
 
 module.exports = app, environment, configuration, database;
+
