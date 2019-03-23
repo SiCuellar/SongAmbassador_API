@@ -5,7 +5,7 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/play_be
+    working_directory: ~/SongAmbassador_API
     docker:
       - image: circleci/node:7.10
         environment:
