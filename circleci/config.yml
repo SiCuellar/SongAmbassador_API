@@ -19,8 +19,11 @@ jobs:
           POSTGRES_DB: circle-test_test 
           POSTGRES_PASSWORD: ""
     steps:
-      - checkout
-      - run: npm install
+      - checkout:
+      - run:
+        name: update-npm
+        command: 'sudo npm install -g npm@latest'
+
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
@@ -32,5 +35,7 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-      - run: npm test
+      - run: 
+        name: test
+        command: npm test
       
