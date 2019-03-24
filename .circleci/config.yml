@@ -39,4 +39,8 @@ jobs:
           name: Wait for db
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
 
-      - run: npm test
+      - run: 
+          name: test
+          command: | 
+            knex migrate:latest
+            npm test
