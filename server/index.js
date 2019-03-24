@@ -6,7 +6,6 @@ const bodyParser = require('body-parser');
 const environment = process.env.NODE_ENV || "development";
 const configuration = require('../knexfile')[environment];
 const database = require('knex')(configuration)
-const test = require('supertest');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -49,5 +48,5 @@ app.listen(app.get('port'), () => {
 });
 
 
-module.exports = app, environment, configuration, database;
+module.exports = app;
 

@@ -7,7 +7,7 @@ exports.up = function(knex, Promise) {
       table.string('artist');
       table.string('rating');
 
-      table.timestamps(true. true);
+      table.timestamps(true, true);
     })
   ])
 };
