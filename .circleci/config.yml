@@ -10,11 +10,11 @@ jobs:
       - image: circleci/node:7.10
         environment:
           PGHOST: 127.0.0.1
-          PGUSER: postgresql-symmetrical-40565
+          PGUSER: root
           NODE_ENV: production
       - image: circleci/postgres
         environment:
-          POSTGRES_USER: root
+          POSTGRES_USER: postgresql-symmetrical-40565
           POSTGRES_DB: favorites
           POSTGRES_PASSWORD: circleci_test
 
