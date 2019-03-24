@@ -1,9 +1,11 @@
 var app = require('../server')
 const test = require('supertest')
 const chai = require('chai');
-// const environment = "development";
+
+// const environment = "test";
 // const configuration = require('../knexfile')[environment];
 // const database = require('knex')(configuration)
+
 // database('favorites').where(database.raw("favorites.fav_id = ?", [1]))
 //   .then(song => {song1 = song})
 
