@@ -39,4 +39,4 @@ jobs:
           name: Wait for db
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
 
-      - run: mocha --exit
+      - run: npm test
