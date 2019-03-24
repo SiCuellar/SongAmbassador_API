@@ -38,10 +38,9 @@ jobs:
       - run:
           name: Wait for db
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
-
       - run: 
           name: test
           command: | 
-            npm migrate
-            npm seed
+            npm run migrate
+            npm run seed
             npm test
