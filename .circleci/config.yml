@@ -10,11 +10,11 @@ jobs:
       - image: circleci/node:6
         environment:
           PGHOST: 127.0.0.1
-          PGUSER: root
+          PGUSER: blah
           NODE_ENV: development
       - image: circleci/postgres:11.2
         environment:
-          POSTGRES_USER: root
+          POSTGRES_USER: blah
           POSTGRES_PASSWORD: ""
           POSTGRES_DB: favorites
 
