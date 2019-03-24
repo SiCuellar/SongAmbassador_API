@@ -11,7 +11,7 @@ jobs:
         environment:
           PGHOST: 127.0.0.1
           PGUSER: song_amb
-          NODE_ENV: development
+          NODE_ENV: production
       - image: circleci/postgres:9.6.2-alpine
         environment:
           POSTGRES_DB: favorites
