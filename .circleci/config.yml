@@ -10,8 +10,8 @@ jobs:
       - image: circleci/node:7.10
         environment:
           PGHOST: 127.0.0.1
-          PGUSER: favorites
-          NODE_ENV: development
+          PGUSER: root
+          NODE_ENV: production
       - image: circleci/postgres
         environment:
           POSTGRES_USER: root

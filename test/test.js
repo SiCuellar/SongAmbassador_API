@@ -1,11 +1,11 @@
 var app = require('../server')
 const test = require('supertest')
 const chai = require('chai');
-const environment = "production";
-const configuration = require('../knexfile')[environment];
-const database = require('knex')(configuration)
-database('favorites').where(database.raw("favorites.fav_id = ?", [1]))
-  .then(song => {song1 = song})
+// const environment = "development";
+// const configuration = require('../knexfile')[environment];
+// const database = require('knex')(configuration)
+// database('favorites').where(database.raw("favorites.fav_id = ?", [1]))
+//   .then(song => {song1 = song})
 
 // const should = chai.should();
 // const chaiHttp = require('chai-http');
@@ -44,10 +44,6 @@ describe('favorites', () => {
       .post('/api/v1/favorites/queen/rock/90')
       .expect(200)
       .expect('{"success":"favorite added!"}')
-      .then(() => {
-        database.seed.run();
-      }
-  )
   });
   it('can delete a favorite', () => {
     return test(app)
