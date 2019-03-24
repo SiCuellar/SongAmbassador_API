@@ -7,16 +7,16 @@ jobs:
   build:
     working_directory: ~/SongAmbassador_API
     docker:
-      - image: circleci/node:7.10
+      - image: circleci/node:6
         environment:
           PGHOST: 127.0.0.1
           PGUSER: root
-          NODE_ENV: production
-      - image: circleci/postgres
+          NODE_ENV: development
+      - image: circleci/postgres:11.2
         environment:
-          POSTGRES_USER: postgresql-symmetrical-40565
+          POSTGRES_USER: root
+          POSTGRES_PASSWORD: ""
           POSTGRES_DB: favorites
-          POSTGRES_PASSWORD: circleci_test
 
     steps:
       - checkout
@@ -39,5 +39,4 @@ jobs:
           name: Wait for db
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
 
-      - run: npm test
-      
+      - run: mocha --exit
