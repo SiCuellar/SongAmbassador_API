@@ -8,6 +8,7 @@ const configuration = require('../knexfile')[environment];
 const database = require('knex')(configuration)
 // const corsYeah = require('cors')
 
+app.use(corsYeah())
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('port', process.env.PORT || 3000);
