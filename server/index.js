@@ -6,40 +6,51 @@ const bodyParser = require('body-parser');
 const environment = process.env.NODE_ENV || "development";
 const configuration = require('../knexfile')[environment];
 const database = require('knex')(configuration)
-const corsYeah = require('cors')
+const cors = require('cors')
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('port', process.env.PORT || 3000);
 app.locals.title = "favorites";
-app.use(corsYeah())
+
+
+app.use(cors());
+app.use(function (request, response, next) {
+  response.header("Access-Control-Allow-Origin",
+    "*");
+  response.header("Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept");
+  response.header("Access-Control-Allow-Methods",
+    "GET, POST, PATCH, DELETE, OPTIONS");
+  next();
+});
 
 
 // show all favorites in db
-app.get("/api/v1/favorites", (request, response, next) => {
+app.get("/api/v1/favorites", (request, response) => {
   database('favorites').select().table('favorites')
     .then(songs => response.status(200).json(songs))
     .catch(error => response.status(500).json({ error }))
 });
 
 // show one favorite from index by id
-app.get("/api/v1/favorites/:id", (req, res, next) => {
+app.get("/api/v1/favorites/:id", (req, res) => {
   database('favorites').where('id', req.params.id)
     .then(song => res.status(200).json(song) )
 });
 
-app.post('/api/v1/favorites/:artist/:title/:rating', (req, res, next) => {
+app.post('/api/v1/favorites/:artist/:title/:rating', (req, res) => {
   database('favorites').insert(req.params)
     .then(() => res.status(200).json({success: 'favorite added!'}))
 });
 
-app.put('/api/v1/favorites/:fav_id/', (req, res, next) => {
+app.put('/api/v1/favorites/:fav_id/', (req, res) => {
   database('favorites').where(database.raw("favorites.fav_id = ?", [req.params.fav_id])).update(req.query)
     .then(stuff => {res.status(200).json({success: 'song successfully updated'})})
     .catch(() => { res.status(400).json({ 'error':'ya done messed up'})})
 });
 
-app.delete('/api/v1/favorites/:fav_id', (req, res, next) => {
+app.delete('/api/v1/favorites/:fav_id', (req, res) => {
   database('favorites').where(req.params).del()
     .then(stuff => { res.status(200).json({ success: 'song successfully deleted' }) })
     .catch(() => { res.status(400).json({ error: 'song still exists' }) })
