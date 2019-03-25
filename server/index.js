@@ -16,30 +16,30 @@ app.locals.title = "favorites";
 
 
 // show all favorites in db
-app.get("/api/v1/favorites", (request, response) => {
+app.get("/api/v1/favorites", (request, response, next) => {
   database('favorites').select().table('favorites')
     .then(songs => response.status(200).json(songs))
     .catch(error => response.status(500).json({ error }))
 });
 
 // show one favorite from index by id
-app.get("/api/v1/favorites/:id", (req, res) => {
+app.get("/api/v1/favorites/:id", (req, res, next) => {
   database('favorites').where('id', req.params.id)
     .then(song => res.status(200).json(song) )
 });
 
-app.post('/api/v1/favorites/:artist/:title/:rating', (req, res) => {
+app.post('/api/v1/favorites/:artist/:title/:rating', (req, res, next) => {
   database('favorites').insert(req.params)
     .then(() => res.status(200).json({success: 'favorite added!'}))
 });
 
-app.put('/api/v1/favorites/:fav_id/', (req, res) => {
+app.put('/api/v1/favorites/:fav_id/', (req, res, next) => {
   database('favorites').where(database.raw("favorites.fav_id = ?", [req.params.fav_id])).update(req.query)
     .then(stuff => {res.status(200).json({success: 'song successfully updated'})})
     .catch(() => { res.status(400).json({ 'error':'ya done messed up'})})
 });
 
-app.delete('/api/v1/favorites/:fav_id', (req, res) => {
+app.delete('/api/v1/favorites/:fav_id', (req, res, next) => {
   database('favorites').where(req.params).del()
     .then(stuff => { res.status(200).json({ success: 'song successfully deleted' }) })
     .catch(() => { res.status(400).json({ error: 'song still exists' }) })
