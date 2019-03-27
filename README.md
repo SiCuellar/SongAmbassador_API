@@ -4,7 +4,7 @@
 ## About the Project
 
 SongAmbassador_API is the BackEnd to a full-stack application. It creates an API built in JavaScript using the Express library.
-The full will allow users to search for artists/songs and favorite them into selected playlist.
+The full app will allow users to search for artists/songs and favorite them into selected playlist.
 
 ## Local Setup
 
