@@ -43,7 +43,7 @@ describe('favorites', () => {
   });
   it('can post to add a favorite', () => {
     return test(app)
-      .post('/api/v1/favorites/queen/rock/90')
+      .post('/api/v1/favorites/queen/rock/90/5')
       .expect(200)
       .expect('{"success":"favorite added!"}')
   });
