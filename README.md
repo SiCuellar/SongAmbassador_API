@@ -22,8 +22,8 @@ Please see [Front-End](https://github.com/nicovigil1/SongAmbassador)
 
 ## Contributors
 
-* Nico Vigil  [https://github.com/abroberts5](https://github.com/nicovigil1)
-* Silvestre Cuellar [https://github.com/nicklindeberg](https://github.com/SiCuellar)
+* Nico Vigil  [https://github.com/nicovigil1](https://github.com/nicovigil1)
+* Silvestre Cuellar [https://github.com/sicuellar](https://github.com/SiCuellar)
 
 ## Built With
 Javascript
