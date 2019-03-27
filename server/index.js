@@ -28,7 +28,7 @@ app.get("/api/v1/favorites/:id", (req, res, next) => {
     .then(song => res.status(200).json(song) )
 });
 
-app.post('/api/v1/favorites/:artist/:title/:rating', (req, res, next) => {
+app.post('/api/v1/favorites/:artist/:title/:rating/:fav_id', (req, res, next) => {
   database('favorites').insert(req.params)
     .then(() => res.status(200).json({success: 'favorite added!'}))
 });
