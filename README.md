@@ -26,24 +26,24 @@ Please see [Front-End](https://github.com/nicovigil1/SongAmbassador)
 * Silvestre Cuellar [https://github.com/sicuellar](https://github.com/SiCuellar)
 
 ## Built With
-Javascript
-Express 
-postgreSQL
-Mocha 
-Chai
-React
+* Javascript
+* Express 
+* postgreSQL
+* Mocha 
+* Chai
+* React
 
 
 ## Endpoints
 
 GET https://intense-escarpment-60510.herokuapp.com/api/v1/favorites
-- Returns a list of your favorites songs that are stored in the database 
+* Returns a list of your favorites songs that are stored in the database 
 
 GET https://intense-escarpment-60510.herokuapp.com/api/v1/favorites/:id
--Returns the favorite object with the specific :id you’ve passed in. A 404 is returned if the favorite is not found.
+* Returns the favorite object with the specific :id you’ve passed in. A 404 is returned if the favorite is not found.
 
 POST https://intense-escarpment-60510.herokuapp.com/api/v1/favorites
--creates a new favorite for database.
+* creates a new favorite for database.
 
 
 
